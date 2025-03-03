@@ -109,6 +109,7 @@ export function Sidebar() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
+                    onClick={() => console.log(`Clicked: ${item.href}`)}
                     className={cn(
                       "flex items-center px-4 py-3 text-sm rounded-xl transition-all",
                       pathname === item.href
@@ -122,6 +123,7 @@ export function Sidebar() {
                         scale: pathname === item.href ? [1, 1.2, 1] : 1,
                       }}
                       transition={{ duration: 0.5 }}
+                      style={{ pointerEvents: "none" }}
                     >
                       <item.icon className="mr-3 h-5 w-5" />
                     </motion.div>
