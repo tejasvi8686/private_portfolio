@@ -17,6 +17,7 @@ import {
   Home,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   {
@@ -48,6 +49,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -107,9 +109,8 @@ export function Sidebar() {
             <ul className="space-y-1">
               {navItems.map((item, index) => (
                 <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    onClick={() => console.log(`Clicked: ${item.href}`)}
+                  <button
+                    onClick={() => router.push(item.href)}
                     className={cn(
                       "flex items-center px-4 py-3 text-sm rounded-xl transition-all",
                       pathname === item.href
@@ -128,7 +129,7 @@ export function Sidebar() {
                       <item.icon className="mr-3 h-5 w-5" />
                     </motion.div>
                     {item.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
